@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.gradient-background {
+  background: linear-gradient(to left, rgb(137, 11, 11), rgb(0, 0, 36));
+}
+
+.gradient-form{
+  background: linear-gradient(rgb(48, 48, 48), rgb(197, 197, 197));
+}
+.gradient-background:hover {
+  background: linear-gradient(to right, red, rgb(2, 2, 72)); 
+}
+
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
