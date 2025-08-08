@@ -7,12 +7,36 @@
 
 body{
     border-radius: 20px;
-    background-image: url('./assets/Images/Background_marvel.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./assets/Images/Marvel_bg.jpg');
+    background-repeat: no-repeat;
     margin-bottom: 20vh;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     margin: 0;
     padding: 0;
+}
+
+.titre{
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nom_hero{
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 20px;
+  font-weight: 800;
+  font-style: normal;
+}
+
+span{
+  font-size: 17px;
+  font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
 }
 .logo {
   height: 6em;

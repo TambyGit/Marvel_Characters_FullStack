@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Logo from "./assets/Images/Logo_marvel.ico";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -69,24 +68,34 @@ function App() {
       universe: character.universe,
     });
     setEditingId(character.id);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   };
 
   const handleDelete = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:3000/characters/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) throw new Error('Failed to delete character');
-      setCharacters(characters.filter((c) => c.id !== id));
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+  const confirmDelete = window.confirm("Êtes-vous sûr de vouloir supprimer ce personnage ?");
+
+  if (!confirmDelete) {
+    return; 
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3000/characters/${id}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) throw new Error('Failed to delete character');
+    setCharacters(characters.filter((c) => c.id !== id));
+  } catch (err) {
+    setError(err.message);
+  }
+};
+
 
   return (
     <div className="background_image">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8 text-white">
+        <h1 className="titre text-3xl font-bold text-center mb-8 text-white">
           Marvel Characters Manager
         </h1>
 
@@ -105,7 +114,7 @@ function App() {
               value={formData.name}
               onChange={handleInputChange}
               placeholder="Character Name"
-              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900 bg-gray-300 border-0"
+                className="border-2 border-red-500 p-2 rounded-md text-amber-50 focus:outline-none"
               required
             />
             <input
@@ -114,7 +123,7 @@ function App() {
               value={formData.realName}
               onChange={handleInputChange}
               placeholder="Real Name"
-              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900 bg-gray-300 border-0"
+              className="border-2 border-red-500 p-2 rounded-md text-amber-50 focus:outline-none"
               required
             />
             <input
@@ -123,7 +132,7 @@ function App() {
               value={formData.universe}
               onChange={handleInputChange}
               placeholder="Universe"
-              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-900 bg-gray-300 border-0"
+              className="border-2 border-red-500 p-2 rounded-md text-amber-50 focus:outline-none"
               required
             />
           </div>
@@ -159,8 +168,8 @@ function App() {
               className="gradient-background border-purple-600 p-4 shadow-md hover:shadow-white transition hover:scale-110 rounded-bl-4xl rounded-tr-4xl"
               >
               <h1 className="text-2xl font-bold mb-2 text-white">{character.id}</h1>
-              <h3 className="text-lg font-bold text-gray-400">{character.name}</h3>
-              <p className="text-white">Real Name: {character.realName}</p>
+              <h3 className="nom_hero text-lg font-bold text-gray-400">{character.name}</h3>
+              <p className="text-yellow-400">Real Name: <span>{character.realName}</span></p>
               <p className="text-white">Universe: {character.universe}</p>
               <div className="mt-4 flex space-x-2">
                 <button
